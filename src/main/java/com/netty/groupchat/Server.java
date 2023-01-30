@@ -1,4 +1,4 @@
-package com.netty.nio.groupchat;
+package com.netty.groupchat;
 
 public class Server {
     public static void main(String[] args) throws InterruptedException {

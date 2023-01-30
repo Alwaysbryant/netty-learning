@@ -40,7 +40,7 @@ public class NettyServer {
 
             System.out.println("the server is ready...");
             // 绑定端口，同步数据
-            ChannelFuture channelFuture = bootstrap.bind(6668).addListener(listen -> {
+            ChannelFuture channelFuture = bootstrap.bind(18111).addListener(listen -> {
                 if (listen.isSuccess()) {
                     System.out.println("端口绑定成功");
                 } else {

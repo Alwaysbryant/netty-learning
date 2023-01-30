@@ -1,5 +1,6 @@
-package com.netty.nio.reactor;
+package com.netty.heartbeat;
 
+import com.netty.nio.reactor.NettyClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
