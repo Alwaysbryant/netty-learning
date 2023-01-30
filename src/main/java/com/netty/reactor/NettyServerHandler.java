@@ -1,4 +1,4 @@
-package com.netty.nio.reactor;
+package com.netty.reactor;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

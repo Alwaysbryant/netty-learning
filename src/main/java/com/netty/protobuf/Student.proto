@@ -1,0 +1,8 @@
+syntax = "proto3"; // 版本
+option java_outer_classname = "StudentPoJo"; // 生成的外部类名，也是文件名
+// protobuf使用message管理数据
+message Student {
+    int32 id = 1; // 1 2 都是属性序号，并非属性的value
+    string name = 2;
+
+}

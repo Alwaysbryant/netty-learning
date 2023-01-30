@@ -1,5 +1,6 @@
-package com.netty.nio.reactor;
+package com.netty.reactor;
 
+import com.netty.protobuf2.NettyServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

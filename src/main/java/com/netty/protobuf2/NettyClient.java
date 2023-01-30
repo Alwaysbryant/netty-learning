@@ -1,13 +1,14 @@
-package com.netty.heartbeat;
+package com.netty.protobuf2;
 
-import com.netty.reactor.NettyClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.protobuf.ProtobufEncoder;
 
 public class NettyClient {
     public static void main(String[] args) throws InterruptedException {
@@ -21,7 +22,10 @@ public class NettyClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new NettyClientHandler());
+                            ChannelPipeline pipeline = ch.pipeline();
+                            // 加入protobuf编码器
+                            pipeline.addLast(new ProtobufEncoder());
+                            pipeline.addLast(new NettyClientHandler());
                         }
                     });
             System.out.println("the client is ok...");

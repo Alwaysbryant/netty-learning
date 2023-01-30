@@ -1,10 +1,12 @@
-package com.netty.nio.reactor;
+package com.netty.protobuf2;
 
+import com.netty.protobuf.StudentPoJo;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
+
+import java.util.Random;
 
 public class NettyClientHandler extends ChannelInboundHandlerAdapter {
     @Override
@@ -15,6 +17,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
     /**
      * 发生读事件时触发
+     *
      * @param ctx
      * @param msg
      * @throws Exception
@@ -29,6 +32,17 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("client handler ctx: " + ctx);
-        ctx.writeAndFlush(Unpooled.copiedBuffer("hello, sever", CharsetUtil.UTF_8));
+        int random = new Random().nextInt(3);
+        PoJo.MyMessage myMessage = null;
+        if (random == 0) {
+            myMessage = PoJo.MyMessage.newBuilder()
+                    .setDataType(PoJo.MyMessage.DataType.studentType)
+                    .setStudent(PoJo.Student.newBuilder().setId(58).setName("Tom").build()).build();
+        } else {
+            myMessage = PoJo.MyMessage.newBuilder()
+                    .setDataType(PoJo.MyMessage.DataType.workerType)
+                    .setWorker(PoJo.Worker.newBuilder().setAge(30).setName("John").build()).build();
+        }
+        ctx.writeAndFlush(myMessage);
     }
 }
