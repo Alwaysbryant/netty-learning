@@ -1,6 +1,7 @@
 package com.netty.bound.initializer;
 
 import com.netty.bound.handler.MyByte2LongDecoder;
+import com.netty.bound.handler.MyByte2LongEncoder;
 import com.netty.bound.handler.MyServerHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -16,7 +17,7 @@ public class MyServerInitializer extends ChannelInitializer<SocketChannel> {
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
         pipeline.addLast(new MyByte2LongDecoder());
-        pipeline.addLast(new MyByte2LongDecoder());
+        pipeline.addLast(new MyByte2LongEncoder());
         pipeline.addLast("myServerHandler", new MyServerHandler());
     }
 }
