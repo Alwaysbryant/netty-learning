@@ -69,3 +69,19 @@ reactor负责建立连接，并且需要分配对应的handler来处理I/O
 ### Netty
 Netty的设计模式就是基于Reactor主从模式，基于事件驱动来处理。bossGroup线程组专门处理连接，workerGroup线程组来处理具体的业务以及I/O操作。
 PS： **Essential Netty in Action**： https://waylau.com/essential-netty-in-action/index.html
+### handler
+ChannelInboundHandler：处理入站事件
+ChannelOutboundHandler：处理出站事件
+ChannelDuplexHandler： 都可以处理
+
+适配器模式
+```java
+/**
+** ChannelInboundHandlerAdapter 被适配类， 处理入站事件
+** ChannelOutboundHandler       目标对象， 处理出站事件
+*/ 
+public class ChannelDuplexHandler extends ChannelInboundHandlerAdapter implements ChannelOutboundHandler {
+  
+}
+```
+

@@ -17,7 +17,7 @@ public class MyClientHandler extends SimpleChannelInboundHandler<MessageProtocol
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        String content = "Java是世界上最好的语言";
+        String content = "Java是世界上最好的语言.cpp";
         for (int i = 0; i < 5; i++) {
             byte[] bytes = content.getBytes(StandardCharsets.UTF_8);
             int len = bytes.length;

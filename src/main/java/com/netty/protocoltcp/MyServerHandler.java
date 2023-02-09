@@ -10,7 +10,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 public class MyServerHandler extends SimpleChannelInboundHandler<MessageProtocol> {
-    private int count;
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, MessageProtocol msg) throws Exception {
