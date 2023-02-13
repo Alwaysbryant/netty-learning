@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.util.CharsetUtil;
 
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
@@ -31,18 +32,15 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
         /**
          * 1. 自定义普通任务
          */
-//        ctx.channel().eventLoop().execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    Thread.sleep(8000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                System.out.println("random...我是异步执行");
-//                ctx.writeAndFlush(Unpooled.copiedBuffer("random...async execute", CharsetUtil.UTF_8));
-//            }
-//        });
+        ctx.channel().eventLoop().execute(() -> {
+            try {
+                Thread.sleep(8000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("random...我是异步执行");
+            ctx.writeAndFlush(Unpooled.copiedBuffer("random...async execute", CharsetUtil.UTF_8));
+        });
         /**
          * 2. 定时任务
          */
